@@ -4,6 +4,7 @@
 /ShooterForDrKmiecik/[Bb]uild/
 /ShooterForDrKmiecik/[Bb]uilds/
 /ShooterForDrKmiecik/Assets/AssetStoreTools*
+/ShooterForDrKmiecik/.vs/
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -32,3 +33,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+ShooterForDrKmiecik/ProjectSettings/ProjectVersion.txt
+ShooterForDrKmiecik/ProjectSettings/PresetManager.asset
+ShooterForDrKmiecik/Packages/manifest.json
