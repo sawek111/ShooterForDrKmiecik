@@ -8,12 +8,12 @@ public class PathFinder
     private const int DIAGONAL_DIST = 14;
     private const int LINE_DIST = 10;
 
-    private Grid _grid = null;
+    private MapGrid _grid = null;
 
     #region Constructor
 
     [Inject]
-    public void Construct(Grid grid)
+    public void Construct(MapGrid grid)
     {
         _grid = grid;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Grid : MonoBehaviour
+public class MapGrid : MonoBehaviour
 {
     [SerializeField] private LayerMask _unwalkableLayer;
     [SerializeField] private Vector2 _gridWorldSize;
