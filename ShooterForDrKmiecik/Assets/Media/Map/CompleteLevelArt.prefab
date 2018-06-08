@@ -1350,6 +1350,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 488946}
+  - component: {fileID: 114192953804684164}
+  - component: {fileID: 114670030534063596}
   m_Layer: 0
   m_Name: CompleteLevelArt
   m_TagString: Untagged
@@ -7270,8 +7272,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 102.574875, y: 11.896666, z: 11.625248}
-  m_Center: {x: 3.4625359, y: 4.6348534, z: -48.946396}
+  m_Size: {x: 102.574875, y: 11.896666, z: 9.1}
+  m_Center: {x: 3.4625359, y: 4.6348534, z: -52.1}
 --- !u!65 &6572526
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -7426,8 +7428,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 102.574875, y: 11.896666, z: 16.597088}
-  m_Center: {x: 3.4625368, y: 4.6348534, z: -46.461803}
+  m_Size: {x: 102.574875, y: 11.896666, z: 9.6}
+  m_Center: {x: 3.4625368, y: 4.6348534, z: -50.3}
 --- !u!65 &6590788
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -9046,3 +9048,35 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171356}
   m_IsPrefabParent: 1
+--- !u!114 &114192953804684164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89712a40ebd380a4d9277f1d177674c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unwalkableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _gridWorldSize: {x: 99.6, y: 106}
+  _noderadius: 0.5
+--- !u!114 &114670030534063596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 114192953804684164}
+  _identifier: 
+  _context: {fileID: 0}
+  _bindType: 0
