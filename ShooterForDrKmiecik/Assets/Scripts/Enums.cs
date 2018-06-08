@@ -9,7 +9,7 @@ public enum AnimationState
     SHOT
 }
 
-public enum GetAxis
+public enum Axis
 {
     HORIZONTAL,
     VERTICAL
