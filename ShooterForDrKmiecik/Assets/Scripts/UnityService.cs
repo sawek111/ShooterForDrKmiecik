@@ -16,6 +16,11 @@ public class UnityService : ITickable
         }
     }
 
+    public bool GetKeyUp(KeyCode code)
+    {
+        return Input.GetKeyUp(code);
+    }
+
     public bool IsLeftMouseButtonUp
     {
         get { return Input.GetMouseButtonUp(0); }
@@ -24,6 +29,11 @@ public class UnityService : ITickable
     public bool IsRightMouseButtonUp
     {
         get { return Input.GetMouseButtonUp(1); }
+    }
+
+    public float GetAxis(Axis axis)
+    {
+        return Input.GetAxis(axis.ToString());
     }
 
     public RaycastHit GetMouseHit()
