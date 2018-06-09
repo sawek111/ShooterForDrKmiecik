@@ -9,7 +9,7 @@ public class MapGrid : MonoBehaviour
     [SerializeField] private Vector2 _gridWorldSize;
     [SerializeField] private float _noderadius;
 
-    private Node[,] _grid = null;
+    private GridNode[,] _grid = null;
 
     #region Constructor
 
@@ -30,7 +30,7 @@ public class MapGrid : MonoBehaviour
         get { return _grid.GetLength(0) * _grid.GetLength(1); }
     }
 
-    public Node GetNodeFromWorldPos(Vector3 worldPos)
+    public GridNode GetNodeFromWorldPos(Vector3 worldPos)
     {
         float percentX = Mathf.Clamp01((worldPos.x + _gridWorldSize.x/2) / _gridWorldSize.x);
         float percentY = Mathf.Clamp01((worldPos.z + _gridWorldSize.y/2) / _gridWorldSize.y);
@@ -41,9 +41,9 @@ public class MapGrid : MonoBehaviour
         return _grid[xCoord, yCoord];
     }
 
-    public List<Node> GetNeighbors(Node node)
+    public List<GridNode> GetNeighbors(GridNode node)
     {
-        List<Node> neighbors = new List<Node>();
+        List<GridNode> neighbors = new List<GridNode>();
 
         for(int x = -1; x <= 1; x++)
         {
@@ -72,7 +72,7 @@ public class MapGrid : MonoBehaviour
 
     private void CreateGrid(int xSize, int ySize)
     {
-        _grid = new Node[xSize, ySize];
+        _grid = new GridNode[xSize, ySize];
 
         float nodeDiameter = 2f * _noderadius;
         Vector3 startPos = transform.position + Vector3.left * _gridWorldSize.x / 2f + Vector3.back * _gridWorldSize.y / 2f;
@@ -83,7 +83,7 @@ public class MapGrid : MonoBehaviour
             {
                 Vector3 worldPos = startPos + Vector3.right * (x * nodeDiameter + _noderadius) + Vector3.forward * (y * nodeDiameter + _noderadius);
                 bool walkable = !Physics.CheckSphere(worldPos, _noderadius, _unwalkableLayer);
-                _grid[x, y] = new Node(walkable, worldPos, x, y);
+                _grid[x, y] = new GridNode(walkable, worldPos, x, y);
             }
         }
     }

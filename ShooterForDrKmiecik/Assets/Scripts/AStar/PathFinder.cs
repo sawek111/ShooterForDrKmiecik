@@ -22,26 +22,26 @@ public class PathFinder
 
     #region Interface
 
-    public List<Node> FindPath(Vector3 startPos, Vector3 endPos)
+    public List<GridNode> FindPath(Vector3 startPos, Vector3 endPos)
     {
-        Node startNode = _grid.GetNodeFromWorldPos(startPos);
-        Node endNode = _grid.GetNodeFromWorldPos(endPos);
+        GridNode startNode = _grid.GetNodeFromWorldPos(startPos);
+        GridNode endNode = _grid.GetNodeFromWorldPos(endPos);
 
-        Heap<Node> openSet = new Heap<Node>(_grid.MaxSize);
-        HashSet<Node> closeSet = new HashSet<Node>();
+        Heap<GridNode> openSet = new Heap<GridNode>(_grid.MaxSize);
+        HashSet<GridNode> closeSet = new HashSet<GridNode>();
         openSet.Add(startNode);
 
         while(openSet.Count > 0)
         {
-            Node currNode = openSet.RemoveFirst();
+            GridNode currNode = openSet.RemoveFirst();
             closeSet.Add(currNode);
             if(currNode == endNode)
             {
                 return RetracePath(startNode,endNode);
             }
 
-            List<Node> neighbors = _grid.GetNeighbors(currNode);
-            foreach(Node neighbor in neighbors)
+            List<GridNode> neighbors = _grid.GetNeighbors(currNode);
+            foreach(GridNode neighbor in neighbors)
             {
                 if(!neighbor.Walkable || closeSet.Contains(neighbor))
                 {
@@ -64,17 +64,17 @@ public class PathFinder
             }
         }
 
-        return new List<Node>();
+        return new List<GridNode>();
     }
 
     #endregion Interface
 
     #region Logic
 
-    private List<Node> RetracePath(Node startNode, Node endNode)
+    private List<GridNode> RetracePath(GridNode startNode, GridNode endNode)
     {
-        List<Node> path = new List<Node>();
-        Node currNode = endNode;
+        List<GridNode> path = new List<GridNode>();
+        GridNode currNode = endNode;
 
         while(currNode != startNode)
         {
@@ -86,7 +86,7 @@ public class PathFinder
         return path;
     }
 
-    private int GetDistance(Node a, Node b)
+    private int GetDistance(GridNode a, GridNode b)
     {
         int distX = Mathf.Abs(a.GridX - b.GridX);
         int distY = Mathf.Abs(a.GridY - b.GridY);

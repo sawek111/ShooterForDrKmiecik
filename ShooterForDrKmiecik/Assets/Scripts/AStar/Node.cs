@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Node : IHeapItem<Node>
+public class GridNode : IHeapItem<GridNode>
 {
     #region public vars
 
@@ -16,13 +16,13 @@ public class Node : IHeapItem<Node>
 
     public int HeapIndex {get; set;}
 
-    public Node Parent { get; set; }
+    public GridNode Parent { get; set; }
 
     #endregion public vars
 
     #region Constructor
 
-    public Node(bool walkable, Vector3 worldPos, int gridX , int gridY )
+    public GridNode(bool walkable, Vector3 worldPos, int gridX , int gridY )
     {
         Walkable = walkable;
         WorldPos = worldPos;
@@ -36,16 +36,16 @@ public class Node : IHeapItem<Node>
 
     public override bool Equals(object obj)
     {
-        Node n = obj as Node;
+        GridNode n = obj as GridNode;
         if(n == null)
         {
             return false;
         }
 
-        return ((Node)obj).WorldPos == WorldPos;
+        return ((GridNode)obj).WorldPos == WorldPos;
     }
 
-    public int CompareTo(Node other)
+    public int CompareTo(GridNode other)
     {
         int compare = FCost.CompareTo(other.FCost);
         if (compare == 0)
