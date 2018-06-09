@@ -13,3 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuSettings:
     MenuPanelPrefab: {fileID: 0}
+  _player:
+    MaxHP: 150
+    StartHP: 100
