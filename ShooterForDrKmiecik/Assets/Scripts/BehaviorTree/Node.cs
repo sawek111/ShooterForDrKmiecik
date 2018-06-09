@@ -1,26 +1,16 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class Node
+﻿public abstract class Node
 {
     protected int _id;
     protected Node[] _children = null;
 
-    public Node(params Node[] newChildren) : base()
+    protected Node(params Node[] newChildren) : base()
     {
         Utils.CreateArrayCopy<Node>(newChildren, out _children);
-        return;
     }
 
     protected Node()
     {
         _id = Utils.GetNodeId();
-        Assert.IsTrue(_id >= 100);
-
-        return;
     }
 
     public virtual void ParticularOpen(Tick tick) { return; }
@@ -51,16 +41,12 @@ public abstract class Node
         tick.CloseNode(this);
         tick.Board.SetValue("isOpen", _id, false);
         ParticularClose(tick);
-
-        return;
     }
 
     protected void Enter(Tick tick)
     {
         tick.EnterNode(this);
         ParticualEnter(tick);
-
-        return;
     }
 
     protected void Open(Tick tick)
@@ -68,8 +54,6 @@ public abstract class Node
         tick.OpenNode(this);
         tick.Board.SetValue("isOpen", _id, true);
         ParticularOpen(tick);
-
-        return;
     }
 
     protected void Exit(Tick tick)
