@@ -15,8 +15,11 @@ public class EnemyInstaller : MonoInstaller<EnemyInstaller>
         Container.BindInterfacesAndSelfTo<EnemyAnimatorController>().AsSingle().WithArguments(_settings.Animator).NonLazy();
         Container.BindInterfacesAndSelfTo<EnemyDistanceSkills>().AsSingle().WithArguments(_settings.Transform).NonLazy();
 
+        Container.BindInterfacesAndSelfTo<Shooter>().AsSingle().WithArguments(_settings.GunTransform, _settings.Enemy, _settings.Animator, ShooterType.Enemy).NonLazy();
+
         Container.Bind<PathFinder>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<EnemyMover>().AsSingle().WithArguments(_settings.Transform, _settings.Rigidbody).NonLazy();
+
     }
 
     [Serializable]
@@ -25,5 +28,7 @@ public class EnemyInstaller : MonoInstaller<EnemyInstaller>
         public Animator Animator;
         public Rigidbody Rigidbody;
         public Transform Transform;
+        public Enemy Enemy;
+        public Transform GunTransform;
     }
 }
