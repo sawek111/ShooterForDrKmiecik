@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+public class Player : MonoBehaviour, IHealable, IHurtable
 {
     private PlayerHealth _health = null;
     private PlayerCharacterController _characterController = null;
