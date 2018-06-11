@@ -15,6 +15,12 @@ public enum Axis
     VERTICAL
 }
 
+public enum ShooterType
+{
+    Player,
+    Enemy
+}
+
 #region BehaviorTree
 
 public enum NodeState
