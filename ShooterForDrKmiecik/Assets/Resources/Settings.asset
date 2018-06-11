@@ -38,4 +38,4 @@ MonoBehaviour:
     LaserPrefab: {fileID: 1882410403497930, guid: 7dd451fa07ee77e4da0484038c23f664,
       type: 2}
   _healArea:
-    HealingValue: 3
+    HealingValue: 1
