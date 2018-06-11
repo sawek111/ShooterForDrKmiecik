@@ -16,3 +16,11 @@ MonoBehaviour:
   _player:
     MaxHP: 150
     StartHP: 100
+  _enemyHealth:
+    StartHealth: 70
+    MaxHealth: 100
+  _enemyAnimator:
+    AnimatorStateString: State
+  _enemyDistanceSkills:
+    VisiblePlayerDistance: 25
+    ShootingDistance: 10

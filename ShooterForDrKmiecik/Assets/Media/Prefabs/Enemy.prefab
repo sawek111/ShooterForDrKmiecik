@@ -2004,6 +2004,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd85b7c4b7512748b53348d831efb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _settings:
+    Animator: {fileID: 95924465331053526}
+    Rigidbody: {fileID: 54255457114274308}
+    Transform: {fileID: 4180133151150584}
 --- !u!114 &114375920540799152
 MonoBehaviour:
   m_ObjectHideFlags: 1

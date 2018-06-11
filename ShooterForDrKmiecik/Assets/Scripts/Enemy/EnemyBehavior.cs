@@ -12,7 +12,7 @@ public class EnemyBehavior : IInitializable
     }
 
 
-    public void Update()
+    public void FixedUpdate()
     {
 
     }
