@@ -66,6 +66,14 @@ public class MapGrid : MonoBehaviour
         return neighbors;
     }
 
+    public GridNode GetWalkableNeighbor(GridNode node)
+    {
+      
+        //TODO implement walkable neighbor
+
+        return node;
+    }
+
     #endregion Interface
 
     #region Logic
