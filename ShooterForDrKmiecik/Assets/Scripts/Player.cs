@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
         get { return _currHealth <= 0; }
     }
 
+    public Vector3 Position
+    {
+        get { return transform.position; }
+    }
+
     public void ApplyDamage(int damage)
     {
         _currHealth = (int)Mathf.Clamp(_currHealth - damage, 0f, _settings.MaxHP);
