@@ -13,7 +13,7 @@ public class PathFinder
     #region Constructor
 
     [Inject]
-    public void Construct(MapGrid grid)
+    public PathFinder(MapGrid grid)
     {
         _grid = grid;
     }
