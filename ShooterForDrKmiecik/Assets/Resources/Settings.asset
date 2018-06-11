@@ -20,8 +20,8 @@ MonoBehaviour:
     MaxHP: 300
     StartHP: 100
   _characterController:
-    ForwardSpeed: 100
-    RotateSpeed: 10
+    ForwardSpeed: 10
+    RotateSpeed: 100
     InputDelay: 0.1
     StateString: State
   _enemyHealth:
@@ -37,3 +37,5 @@ MonoBehaviour:
     PlayerShootTimeNormalized: 0.187
     LaserPrefab: {fileID: 1882410403497930, guid: 7dd451fa07ee77e4da0484038c23f664,
       type: 2}
+  _healArea:
+    HealingValue: 3

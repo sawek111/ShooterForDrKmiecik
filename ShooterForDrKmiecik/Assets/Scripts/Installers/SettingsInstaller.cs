@@ -17,6 +17,9 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
 
     [SerializeField] private Shooter.Settings _shooter = null;
 
+    [SerializeField] private HealArea.Settings _healArea = null;
+
+
     public override void InstallBindings()
     {
         Container.BindInstance(_menu);
@@ -31,5 +34,7 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
         Container.BindInstance(_enemyDistanceSkills);
 
         Container.BindInstance(_shooter);
+
+        Container.BindInstance(_healArea);
     }
 }
