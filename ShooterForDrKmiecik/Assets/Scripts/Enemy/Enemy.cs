@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IHealable, IHurtable
 {
     private EnemyBehavior _behevior = null;
     private EnemyHealth _health = null;
