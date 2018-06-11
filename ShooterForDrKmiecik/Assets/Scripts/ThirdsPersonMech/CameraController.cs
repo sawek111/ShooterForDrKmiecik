@@ -8,15 +8,13 @@ public class CameraController : MonoBehaviour
     private const float LOOK_SMOOTH = 0.09f;
     private readonly Vector3 OFFSET_FROM_TARGET = new Vector3(0f, 6f, -17f);
 
-    [SerializeField] private Transform _target;
-
-    private CharacterController _characterController = null;
+    private Player _player = null;
     float _rotateVel = 0f;
 
     [Inject]
-    public void Construct(CharacterController characterController)
-    {
-        _characterController = characterController ;
+    public void Construct(Player player)
+    { 
+        _player = player;
     }
 
     public void LateUpdate()
@@ -28,17 +26,17 @@ public class CameraController : MonoBehaviour
 
     private void LookAtTarget()
     {
-        if (_characterController.IsRotation)
+        if (_player.IsRotation)
         {
-            float eulerYAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _target.eulerAngles.y, ref _rotateVel, LOOK_SMOOTH);
+            float eulerYAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _player.Transform.eulerAngles.y, ref _rotateVel, LOOK_SMOOTH);
             transform.rotation = Quaternion.Euler(transform.eulerAngles.x, eulerYAngle, 0);
         }
     }
 
     private void MoveToTarget()
     {
-        Vector3 destination = _characterController.TargetRotation * OFFSET_FROM_TARGET;
-        destination += _target.position;
+        Vector3 destination = _player.TargetRotation * OFFSET_FROM_TARGET;
+        destination += _player.Position;
         transform.position = destination;
     }
 

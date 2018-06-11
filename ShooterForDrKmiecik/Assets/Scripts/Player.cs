@@ -4,20 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Player : MonoBehaviour
 {
-    [Inject] Settings _settings = null;
+    private PlayerHealth _health = null;
+    private PlayerCharacterController _characterController = null;
 
-    private int _currHealth = 100;
-
-    public void Awake()
+    [Inject]
+    public void Construct(PlayerHealth playerHealth, PlayerCharacterController characterController)
     {
-        _currHealth = _settings.MaxHP;        
-    }
-
-    public  bool Dead
-    {
-        get { return _currHealth <= 0; }
+        _health = playerHealth;
+        _characterController = characterController;
     }
 
     public Vector3 Position
@@ -25,20 +20,30 @@ public class Player : MonoBehaviour
         get { return transform.position; }
     }
 
-    public void ApplyDamage(int damage)
+    public Transform Transform
     {
-        _currHealth = (int)Mathf.Clamp(_currHealth - damage, 0f, _settings.MaxHP);
+        get { return transform; }
+    }
+
+    public bool IsRotation
+    {
+        get { return _characterController.IsRotation; }
+    }
+
+    public Quaternion TargetRotation
+    {
+        get { return _characterController.TargetRotation; }
     }
 
     public void Heal(int value)
     {
-        _currHealth = (int)Mathf.Clamp(_currHealth + value, 0f, _settings.MaxHP);
+        _health.ChangeHealth(value);
     }
 
-    [Serializable]
-    public class Settings
+    public void Hurt(int value)
     {
-        public int MaxHP;
-        public int StartHP;
+        _health.ChangeHealth(-value);
     }
+
+
 }
