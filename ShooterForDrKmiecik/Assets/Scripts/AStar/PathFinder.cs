@@ -25,7 +25,7 @@ public class PathFinder
     public List<GridNode> FindPath(Vector3 startPos, Vector3 endPos)
     {
         GridNode startNode = _grid.GetNodeFromWorldPos(startPos);
-        GridNode endNode = _grid.GetNodeFromWorldPos(endPos);
+        GridNode endNode = _grid.GetWalkableNeighbor(_grid.GetNodeFromWorldPos(endPos));
 
         Heap<GridNode> openSet = new Heap<GridNode>(_grid.MaxSize);
         HashSet<GridNode> closeSet = new HashSet<GridNode>();
