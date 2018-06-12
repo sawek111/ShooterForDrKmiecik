@@ -8,22 +8,23 @@ public class PlayerHealth : IInitializable
 {
     [Inject] private Settings _settings = null;
 
-    private int _currHealth = 100;
+    public int Health { get; set; }
 
     public void Initialize()
     {
-        _currHealth = _settings.StartHP;
+        Health = _settings.StartHP;
     }
 
     public bool Dead
     {
-        get { return _currHealth <= 0; }
+        get { return Health <= 0; }
     }
 
     public void ChangeHealth(int change)
     {
-        _currHealth = Mathf.Clamp(_currHealth + change, 0, _settings.MaxHP);
+        Health = Mathf.Clamp(Health + change, 0, _settings.MaxHP);
     }
+
 
     [Serializable]
     public class Settings

@@ -36,6 +36,16 @@ public class Player : MonoBehaviour, IHealable, IHurtable
         get { return _characterController.TargetRotation; }
     }
 
+    public bool IsDead
+    {
+        get { return _health.Dead; }
+    }
+
+    public int GetHealth()
+    {
+        return _health.Health;
+    }
+
     public void Heal(int value)
     {
         _health.ChangeHealth(value);
@@ -45,6 +55,7 @@ public class Player : MonoBehaviour, IHealable, IHurtable
     {
         _health.ChangeHealth(-value);
     }
+
 
 
 }
