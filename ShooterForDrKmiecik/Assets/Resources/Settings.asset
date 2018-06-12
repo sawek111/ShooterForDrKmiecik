@@ -29,10 +29,16 @@ MonoBehaviour:
     InputDelay: 0.1
     StateString: State
   _enemyHealth:
-    StartHealth: 70
+    StartHealth: 10
     MaxHealth: 100
   _enemyAnimator:
     AnimatorStateString: State
+  _enemyMover:
+    DistanceToPathElementtAvailableOffset: 0.3
+    DistanceToTargetAvailableOffset: 1
+    TargetChangeAvailableOffset: 1
+    RunSpeed: 15
+    EscapeMaxDistance: 20
   _enemyDistanceSkills:
     VisiblePlayerDistance: 25
     ShootingDistance: 10
