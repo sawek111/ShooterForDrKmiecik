@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patrol : Node
+public class Heal :  Node
 {
     private Enemy _enemy = null;
 
@@ -13,7 +13,11 @@ public class Patrol : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        return base.ParticularTick(tick);
-    }
+        if(_enemy.GetCurrentHealth() < _enemy.GetMaxHealth())
+        {
+            return NodeState.RUNNING;
+        }
 
+        return NodeState.SUCCESS;
+    }
 }

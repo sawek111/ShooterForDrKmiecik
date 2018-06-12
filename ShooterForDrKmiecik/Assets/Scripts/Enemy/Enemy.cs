@@ -24,21 +24,40 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         _shooter = shooter;
     }
 
-    public bool IsEscaping
+  
+    public bool IsInTarget
     {
-        //TODO is escaping on behavior
-        get; set;
+        get { return _enemyMover.IsInTarget; }
     }
 
-    public Vector3 EscapingTarget
+    public TargetType TargetType
     {
-        //TODO  escaping mech behavior
-        get;
+        get { return _enemyMover.TargetType; }
     }
 
-    public void CreateEscapingTarget()
+    public void MoveToTarget()
     {
-        //TODO  escaping mech behavior
+        _enemyMover.MoveToTarget();
+    }
+
+    public void SetNewTarget(Vector3 newTargetPosition, TargetType targetType)
+    {
+        _enemyMover.SetNewTarget(newTargetPosition, targetType);
+    }
+
+    public void RemoveTarget()
+    {
+        _enemyMover.RemoveTarget();
+    }
+
+    public Vector3 PrepareEscapePosition(Vector3 playerPos)
+    {
+        return _enemyMover.PrepareEscapePosition(playerPos);
+    }
+
+    public bool IsDead
+    {
+        get { return _health.CurrentHealth <= 0; }
     }
 
     public void Shoot()
@@ -46,24 +65,9 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         _shooter.Shoot();
     }
 
-    public void MoveTowards(Vector3 newPosition)
-    {
-        _enemyMover.MoveTo(newPosition);
-    }
-
-    public int GetMaxHealth()
-    {
-        return _health.GetMaxHealth();
-    }
-
     public void SetAnimationState(AnimationState state)
     {
         _animatorController.SetAnimationState(state);
-    }
-
-    public int GetCurrentHealth()
-    {
-        return _health.CurrentHealth;
     }
 
     public bool CanSeePlayer()
@@ -76,6 +80,8 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         return _distanceSkills.CanShootPlayer();
     }
 
+    #region Health
+
     public void Heal(int value)
     {
         _health.ChangeHealth(value);
@@ -85,4 +91,18 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
     {
         _health.ChangeHealth(-value);
     }
+
+    public int GetCurrentHealth()
+    {
+        return _health.CurrentHealth;
+    }
+
+    public int GetMaxHealth()
+    {
+        return _health.GetMaxHealth();
+    }
+
+    #endregion Health
+
+    public class Factory : Factory<Enemy>{}
 }

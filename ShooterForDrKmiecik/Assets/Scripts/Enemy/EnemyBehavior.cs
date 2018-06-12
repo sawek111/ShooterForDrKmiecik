@@ -27,7 +27,7 @@ public class EnemyBehavior : IInitializable, IFixedTickable
 
     private BehaviorTree CreateTree()
     {
-        Node mainNode = 
+        Node mainNode =
             new PriorityNode(
                 new SequenceNode(
                     new HasLittleHealth(),
@@ -39,9 +39,16 @@ public class EnemyBehavior : IInitializable, IFixedTickable
                         new PriorityNode(
                             new SequenceNode(
                                 new CanSeePlayer(),
-                                new Escape()
+                                new SequenceNode(
+                                    new IndicateEscapePoint(_container),
+                                    new MoveToTarget()
+                                )
                             ),
-                            new GoToHealPoint()
+                            new SequenceNode(
+                                new IndicateHealingPoint(_container),
+                                new MoveToTarget(),
+                                new Heal()
+                            )
                       )
                 )
            ),
@@ -50,13 +57,19 @@ public class EnemyBehavior : IInitializable, IFixedTickable
                     new PriorityNode(
                         new SequenceNode(
                             new CanShootPlayer(),
-                            new Shot()
+                            new Shoot()
                         ),
-                        new FollowPlayer()
+                        new SequenceNode(
+                            new IndicatePlayerPoint(_container),
+                            new MoveToTarget()
+                        )
                     )
             ),
                 new MemSequnceNode(
-                    new Patrol(),
+                    new SequenceNode(
+                        new IndicatePatrolPoint(_container),
+                        new MoveToTarget()
+                    ),
                     new Idle()
                 )
         );

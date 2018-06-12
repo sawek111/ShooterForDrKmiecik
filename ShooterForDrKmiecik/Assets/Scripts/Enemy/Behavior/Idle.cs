@@ -5,6 +5,8 @@ using UnityEngine;
 public class Idle : Node
 {
     private Enemy _enemy = null;
+    private float _timer = 0f;
+
 
     public override void ParticualEnter(Tick tick)
     {
@@ -13,7 +15,16 @@ public class Idle : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        return base.ParticularTick(tick);
+        if (_timer > 5f)
+        {
+            _timer = 0f;
+            return NodeState.SUCCESS;
+        }
+
+        _timer += Time.fixedDeltaTime;
+        _enemy.SetAnimationState(AnimationState.IDLE);
+        return NodeState.RUNNING;
+
     }
 
 }

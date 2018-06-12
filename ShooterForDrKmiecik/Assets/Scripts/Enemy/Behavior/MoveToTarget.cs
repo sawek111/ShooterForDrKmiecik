@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : Node
+public class MoveToTarget : Node
 {
     private Enemy _enemy = null;
 
@@ -13,7 +13,16 @@ public class FollowPlayer : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        return base.ParticularTick(tick);
+        _enemy.SetAnimationState(AnimationState.RUN);
+        _enemy.MoveToTarget();
+        if(_enemy.IsInTarget)
+        {
+            _enemy.RemoveTarget();
+            return NodeState.SUCCESS;
+        }
+
+        return NodeState.RUNNING;
     }
 
 }
+

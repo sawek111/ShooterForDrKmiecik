@@ -63,7 +63,6 @@ public class Tick
 
     public NodeState TickNode(Node node)
     {
-        //TODO
         return NodeState.ERROR;
     }
 

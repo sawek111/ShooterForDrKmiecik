@@ -67,6 +67,15 @@ public class PathFinder
         return new List<GridNode>();
     }
 
+    public Vector3 GetRandomPosition()
+    {
+        int x = Random.Range(0, _grid.XSize);
+        int y= Random.Range(0, _grid.YSize);
+
+        GridNode endNode = _grid.GetWalkableNeighbor(_grid[x,y]);
+        return endNode.WorldPos;
+    }
+
     #endregion Interface
 
     #region Logic

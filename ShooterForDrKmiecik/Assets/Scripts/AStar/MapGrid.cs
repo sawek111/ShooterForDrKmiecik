@@ -25,9 +25,24 @@ public class MapGrid : MonoBehaviour
 
     #region Interface
 
+    public GridNode this[int x, int y]
+    {
+        get { return _grid[x,y]; }
+    }
+
     public int MaxSize
     {
         get { return _grid.GetLength(0) * _grid.GetLength(1); }
+    }
+
+    public int XSize
+    {
+        get { return _grid.GetLength(0); }
+    }
+
+    public int YSize
+    {
+        get { return _grid.GetLength(1); }
     }
 
     public GridNode GetNodeFromWorldPos(Vector3 worldPos)
@@ -68,8 +83,19 @@ public class MapGrid : MonoBehaviour
 
     public GridNode GetWalkableNeighbor(GridNode node)
     {
-      
-        //TODO implement walkable neighbor
+        if(node.Walkable)
+        {
+            return node;
+        }
+
+        GridNode neighborWalkable;
+        for(int i = 0; i < _grid.Length; i++)
+        {
+            if(FindWalkableNeighbor(node, out neighborWalkable, i))
+            {
+                return neighborWalkable;
+            }
+        }
 
         return node;
     }
@@ -77,6 +103,39 @@ public class MapGrid : MonoBehaviour
     #endregion Interface
 
     #region Logic
+
+    private bool FindWalkableNeighbor(GridNode destination, out GridNode result, int offset)
+    {
+        int horizontalPlus = Mathf.Clamp(destination.GridX + offset, 0, _grid.GetLength(0) - 1);
+        int horizontalMinus = Mathf.Clamp(destination.GridX - offset, 0, _grid.GetLength(0) - 1);
+        int VerticalPlus = Mathf.Clamp(destination.GridY + offset, 0, _grid.GetLength(1) - 1);
+        int VerticalMinus = Mathf.Clamp(destination.GridY - offset, 0, _grid.GetLength(1) - 1);
+
+        if(_grid[horizontalPlus, VerticalPlus].Walkable)
+        {
+            result = _grid[horizontalPlus, VerticalPlus];
+            return true;
+        }
+        if (_grid[horizontalPlus, VerticalMinus].Walkable)
+        {
+            result = _grid[horizontalPlus, VerticalMinus];
+            return true;
+        }
+        if (_grid[horizontalMinus, VerticalPlus].Walkable)
+        {
+            result = _grid[horizontalMinus, VerticalPlus];
+            return true;
+        }
+        if (_grid[horizontalMinus, VerticalMinus].Walkable)
+        {
+            result = _grid[horizontalMinus, VerticalMinus];
+            return true;
+        }
+
+        result = destination;
+
+        return false;
+    }
 
     private void CreateGrid(int xSize, int ySize)
     {

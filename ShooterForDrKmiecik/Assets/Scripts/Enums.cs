@@ -9,6 +9,15 @@ public enum AnimationState
     SHOT
 }
 
+public enum TargetType
+{
+    ESCAPE,
+    HEAL,
+    FOLLOW_PLAYER,
+    PATROL,
+    NONE
+}
+
 public enum Axis
 {
     HORIZONTAL,

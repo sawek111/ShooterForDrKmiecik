@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shot : Node
+public class Shoot : Node
 {
     private Enemy _enemy = null;
 
@@ -13,7 +13,9 @@ public class Shot : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        return base.ParticularTick(tick);
+        _enemy.Shoot();
+        _enemy.SetAnimationState(AnimationState.SHOT);
+        return NodeState.SUCCESS;
     }
 
 }
