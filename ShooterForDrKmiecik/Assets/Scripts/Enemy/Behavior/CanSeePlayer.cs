@@ -17,9 +17,6 @@ public class CanSeePlayer : Node
         {
             return NodeState.SUCCESS;
         }
-
-        _enemy.IsEscaping = false;
         return NodeState.FAILURE;
     }
-
 }

@@ -19,12 +19,14 @@ public class EnemyDistanceSkills
 
     public bool  CanSeePlayer()
     {
-        if(Mathf.Abs((_transform.position - _player.Position).sqrMagnitude) < _settings.VisiblePlayerDistance)
+        float distance = Mathf.Abs((_transform.position - _player.Position).sqrMagnitude);
+
+        if (distance < _settings.VisiblePlayerDistance)
         {
             RaycastHit hit;
-            if(Physics.Raycast(_transform.position, _player.Position - _transform.position, out hit, _settings.VisiblePlayerDistance))
+            if (Physics.Raycast(_transform.position, _player.Position - _transform.position, out hit, _settings.VisiblePlayerDistance))
             {
-                if(hit.collider.gameObject.GetComponent<Player>() != null)
+                if (hit.collider.gameObject.GetComponent<Player>() != null)
                 {
                     return true;
                 }
