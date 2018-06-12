@@ -34,21 +34,14 @@ public class Shooter
         {
             t += Time.deltaTime;
             AnimatorTransitionInfo transitionInfo = _animator.GetAnimatorTransitionInfo(0);
-            if (_animator.GetInteger("State") != (int)AnimationState.SHOT)
-            {
-                break;
-            }
-
             if (transitionInfo.normalizedTime >= GetTypeNormalizedTime())
             {
-                GameObject.Instantiate(_settings.LaserPrefab, _sourceTransform);
+                GameObject.Instantiate(_settings.LaserPrefab, _sourceTransform.position + _sourceTransform.transform.forward, _sourceTransform.rotation, null);
                 break;
             }
 
             yield return null;
         }
-
-        yield break;
     }
 
     private float GetTypeNormalizedTime()
@@ -75,5 +68,6 @@ public class Shooter
         [Range(0f, 1f)] public float PlayerShootTimeNormalized;
 
         public GameObject LaserPrefab;
+
     }
 }
