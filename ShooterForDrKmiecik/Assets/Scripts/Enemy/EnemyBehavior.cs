@@ -6,9 +6,7 @@ public class EnemyBehavior : IInitializable, IFixedTickable
     private readonly Enemy _enemy = null;
 
     private BehaviorTree _behaviorTree = null;
-    private BlackBoard _board = null;
-
-
+    private BlackBoard _board = new BlackBoard();
 
     public EnemyBehavior(Enemy enemy, DiContainer container)
     {
