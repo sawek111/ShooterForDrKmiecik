@@ -24,11 +24,6 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         _shooter = shooter;
     }
 
-    public void UpdateBehavior()
-    {
-        _behevior.FixedUpdate();
-    }
-
     public bool IsEscaping
     {
         //TODO is escaping on behavior

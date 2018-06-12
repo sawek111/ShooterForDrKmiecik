@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanSeePlayer : Node
+public class Idle : Node
 {
     private Enemy _enemy = null;
 
@@ -13,13 +13,7 @@ public class CanSeePlayer : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        if (_enemy.CanSeePlayer())
-        {
-            return NodeState.SUCCESS;
-        }
-
-        _enemy.IsEscaping = false;
-        return NodeState.FAILURE;
+        return base.ParticularTick(tick);
     }
 
 }

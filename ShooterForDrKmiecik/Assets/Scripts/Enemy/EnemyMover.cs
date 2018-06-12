@@ -42,11 +42,23 @@ public class EnemyMover
         _rigidbody.velocity = _transform.forward * _settings.RunSpeed;
     }
 
+    public void EscapeFrom(Vector3 avoidingPosition)
+    {
+        Vector3 escapeDirection = Vector3.ClampMagnitude(_transform.position - avoidingPosition, _settings.EscapeMaxDistance);
+
+        _pathFinder.FindPath(_transform.position, escapeDirection);
+
+        //TODO end mech EscapeFrom
+
+    }
+
     public class Settings
     {
         public float DistanceToTargetAvailableOffset;
         public float TargetChangeAvailableOffset;
 
         public float RunSpeed;
+
+        public float EscapeMaxDistance;
     }
 }

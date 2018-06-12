@@ -10,7 +10,7 @@ public class EnemyInstaller : MonoInstaller<EnemyInstaller>
 
     public override void InstallBindings()
     {
-        Container.BindInterfacesAndSelfTo<EnemyBehavior>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<EnemyBehavior>().AsSingle().WithArguments(_settings.Enemy).NonLazy();
         Container.BindInterfacesAndSelfTo<EnemyHealth>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<EnemyAnimatorController>().AsSingle().WithArguments(_settings.Animator).NonLazy();
         Container.BindInterfacesAndSelfTo<EnemyDistanceSkills>().AsSingle().WithArguments(_settings.Transform).NonLazy();
