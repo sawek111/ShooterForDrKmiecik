@@ -7,6 +7,8 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     [SerializeField] private MenuInstaller.Settings _menu = null;
     [SerializeField] private GameplayInstaller.Settings _gameplay = null;
 
+    [SerializeField] private GameManager.Settings _gameManager = null;
+
     [SerializeField] private PlayerHealth.Settings _playerHealth = null;
     [SerializeField] private PlayerCharacterController.Settings _characterController = null;
 
@@ -24,6 +26,8 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     {
         Container.BindInstance(_menu);
         Container.BindInstance(_gameplay);
+
+        Container.BindInstance(_gameManager);
 
         Container.BindInstance(_playerHealth);
         Container.BindInstance(_characterController);

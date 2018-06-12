@@ -16,6 +16,10 @@ MonoBehaviour:
   _gameplay:
     PlayerPrefab: {fileID: 1355901795138570, guid: 3118dfe70298131408eff1449d5b621b,
       type: 2}
+    EnemyPrefab: {fileID: 1976149098437204, guid: ae7c38bff3975c14f9e4965fc893c38c,
+      type: 2}
+  _gameManager:
+    EnemiesCount: 1
   _playerHealth:
     MaxHP: 300
     StartHP: 100
