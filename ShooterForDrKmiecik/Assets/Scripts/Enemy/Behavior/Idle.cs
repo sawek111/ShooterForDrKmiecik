@@ -15,7 +15,7 @@ public class Idle : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        if (_timer > 5f)
+        if (_timer > 10f)
         {
             _timer = 0f;
             _enemy.PatrolState = PatrolState.PATROL;
