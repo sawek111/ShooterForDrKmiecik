@@ -11,7 +11,12 @@ public class HasLittleHealth : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        return ((float)_enemy.GetCurrentHealth() / (float)_enemy.GetMaxHealth() <= 0.2f) ? NodeState.SUCCESS : NodeState.FAILURE;
+        if ((float)_enemy.GetCurrentHealth() / (float)_enemy.GetMaxHealth() <= 0.2f || _enemy.IsHealing)
+        {
+            return NodeState.SUCCESS;
+        }
+
+        return NodeState.FAILURE;
     }
-    
+
 }

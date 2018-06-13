@@ -8,7 +8,9 @@ public class EnemyBehavior : IInitializable, IFixedTickable
     private BehaviorTree _behaviorTree = null;
     private BlackBoard _board = new BlackBoard();
 
+    public bool IsHealing { get; set; }
     public PatrolState PatrolState { get; set; }
+
 
     public EnemyBehavior(Enemy enemy, DiContainer container)
     {
@@ -18,6 +20,7 @@ public class EnemyBehavior : IInitializable, IFixedTickable
 
     public void Initialize()
     {
+        IsHealing = false;
         PatrolState = PatrolState.PATROL;
 
         _behaviorTree = CreateTree();
@@ -58,10 +61,10 @@ public class EnemyBehavior : IInitializable, IFixedTickable
            ),
                 new SequenceNode(
                     new CanSeePlayer(),
-                    new PriorityNode(
+                    new SequenceNode(
                         new SequenceNode(
                             new CanShootPlayer(),
-                            new Shoot()
+                            new Shoot(_container)
                         ),
                         new SequenceNode(
                             new IndicatePlayerPoint(_container),

@@ -13,11 +13,13 @@ public class Heal :  Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        if(_enemy.GetCurrentHealth() < _enemy.GetMaxHealth())
+        if (_enemy.GetCurrentHealth() == _enemy.GetMaxHealth())
         {
-            return NodeState.RUNNING;
+            Debug.LogWarning(_enemy.GetCurrentHealth());
+            _enemy.IsHealing = false;
+            return NodeState.SUCCESS;
         }
 
-        return NodeState.SUCCESS;
+        return NodeState.RUNNING;
     }
 }

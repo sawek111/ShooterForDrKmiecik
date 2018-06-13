@@ -30,7 +30,7 @@ public class EnemyMover
 
     public bool IsInTarget
     {
-        get { return (_transform.position - _targetPosition).sqrMagnitude < _settings.DistanceToTargetAvailableOffset; }
+        get { return (_transform.position - _targetPosition).magnitude < _settings.DistanceToTargetAvailableOffset; }
     }
 
     public TargetType TargetType
@@ -40,9 +40,18 @@ public class EnemyMover
 
     public void MoveToTarget()
     {
-        if ((_path[0].WorldPos - _transform.position).sqrMagnitude <= _settings.DistanceToPathElementtAvailableOffset)
+        if(_path.Count == 0)
+        {
+            return;
+        }
+
+        if ((_path[0].WorldPos - _transform.position).magnitude <= _settings.DistanceToPathElementtAvailableOffset)
         {
             _path.RemoveAt(0);
+            if (_path.Count == 0)
+            {
+                return;
+            }
         }
 
         Vector3 dest = _path[0].WorldPos;
@@ -54,7 +63,7 @@ public class EnemyMover
     public void SetNewTarget(Vector3 newPosition, TargetType targetType)
     {
         _path = _pathFinder.FindPath(_transform.position, newPosition);
-        _targetPosition = _path[_path.Count - 1].WorldPos;
+        _targetPosition = (_path.Count > 0) ? _path[_path.Count - 1].WorldPos : newPosition;
         _targetType = targetType;
     }
 
@@ -66,7 +75,12 @@ public class EnemyMover
     public Vector3 PrepareEscapePosition(Vector3 playerPos)
     {
         Vector3 escapeDirection = Vector3.ClampMagnitude(_transform.position - playerPos, _settings.EscapeMaxDistance);
-        return _transform.position + escapeDirection;
+        Vector3 simpleEscapePos = _transform.position + escapeDirection;
+
+        Vector2 randFactors = (UnityEngine.Random.insideUnitCircle * _settings.EscapeMaxDistance);
+        Vector3 rand = new Vector3(randFactors.x, 0f, randFactors.y);
+        
+        return simpleEscapePos + rand;
     }
 
     [Serializable]

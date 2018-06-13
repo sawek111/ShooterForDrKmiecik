@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class CanSeePlayer : Node
 {
     private Enemy _enemy = null;

@@ -19,8 +19,7 @@ public class EnemyDistanceSkills
 
     public bool  CanSeePlayer()
     {
-        float distance = Mathf.Abs((_transform.position - _player.Position).sqrMagnitude);
-
+        float distance = (_transform.position - _player.Position).magnitude;
         if (distance < _settings.VisiblePlayerDistance)
         {
             RaycastHit hit;

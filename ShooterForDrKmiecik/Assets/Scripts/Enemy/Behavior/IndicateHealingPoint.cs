@@ -24,6 +24,7 @@ public class IndicateHealingPoint : Node
         if(_enemy.TargetType != TargetType.HEAL)
         {
             _enemy.SetNewTarget(_healArea.Position, TargetType.HEAL);
+            _enemy.IsHealing = true;
         }
 
         return NodeState.SUCCESS;

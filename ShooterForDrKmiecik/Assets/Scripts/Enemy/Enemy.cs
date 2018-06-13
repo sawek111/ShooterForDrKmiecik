@@ -35,6 +35,11 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         get { return _enemyMover.TargetType; }
     }
 
+    public bool IsHealing
+    {
+        get { return _behevior.IsHealing; }
+        set { _behevior.IsHealing = value; }
+    }
 
     public PatrolState PatrolState
     {
@@ -47,6 +52,7 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         _enemyMover.MoveToTarget();
     }
 
+
     public void SetNewTarget(Vector3 newTargetPosition, TargetType targetType)
     {
         _enemyMover.SetNewTarget(newTargetPosition, targetType);
@@ -55,6 +61,11 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
     public void RemoveTarget()
     {
         _enemyMover.RemoveTarget();
+    }
+
+    public void LookAt(Transform transform)
+    {
+        transform.LookAt(transform);
     }
 
     public Vector3 PrepareEscapePosition(Vector3 playerPos)
