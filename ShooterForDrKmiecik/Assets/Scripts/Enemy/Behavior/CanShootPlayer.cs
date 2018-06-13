@@ -13,7 +13,11 @@ public class CanShootPlayer : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
-        return _enemy.CanShootPlayer() ? NodeState.SUCCESS : NodeState.FAILURE;
+        if(_enemy.CanShootPlayer())
+        {
+            return NodeState.SUCCESS;
+        }
+        return NodeState.FAILURE;
     }
 
 }

@@ -67,6 +67,12 @@ public class EnemyMover
         _targetType = targetType;
     }
 
+    public void StopMoving()
+    {
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+    }
+
     public void RemoveTarget()
     {
         _targetType = TargetType.NONE;

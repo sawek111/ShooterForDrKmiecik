@@ -27,6 +27,11 @@ public class Shooter
         _coroutineKeeper.StartCoroutine(WaitForShoot());
     }
 
+    public void Shoot(Transform target)
+    {
+        _coroutineKeeper.StartCoroutine(WaitForShoot(target));
+    }
+
     private IEnumerator WaitForShoot()
     {
         float t = 0f;
@@ -37,6 +42,27 @@ public class Shooter
             if (transitionInfo.normalizedTime >= GetTypeNormalizedTime())
             {
                 GameObject.Instantiate(_settings.LaserPrefab, _sourceTransform.position + _sourceTransform.transform.forward, _sourceTransform.rotation, null);
+                break;
+            }
+
+            yield return null;
+        }
+    }
+
+
+    private IEnumerator WaitForShoot(Transform target)
+    {
+        float t = 0f;
+        while (t < 3f)
+        {
+            t += Time.deltaTime;
+            AnimatorTransitionInfo transitionInfo = _animator.GetAnimatorTransitionInfo(0);
+            if (transitionInfo.normalizedTime >= GetTypeNormalizedTime())
+            {
+                _sourceTransform.LookAt(target);
+                Vector3 source = _sourceTransform.position + _sourceTransform.transform.forward;
+             
+                GameObject.Instantiate(_settings.LaserPrefab, source , _sourceTransform.rotation, null);
                 break;
             }
 

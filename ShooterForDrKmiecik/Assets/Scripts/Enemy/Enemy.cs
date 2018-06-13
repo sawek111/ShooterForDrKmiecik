@@ -52,6 +52,10 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         _enemyMover.MoveToTarget();
     }
 
+    public void StopMoving()
+    {
+        _enemyMover.StopMoving();
+    }
 
     public void SetNewTarget(Vector3 newTargetPosition, TargetType targetType)
     {
@@ -78,9 +82,9 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         get { return _health.CurrentHealth <= 0; }
     }
 
-    public void Shoot()
+    public void Shoot(Transform transform)
     {
-        _shooter.Shoot();
+        _shooter.Shoot(transform);
     }
 
     public void SetAnimationState(AnimationState state)

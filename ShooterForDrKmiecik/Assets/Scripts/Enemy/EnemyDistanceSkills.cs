@@ -40,7 +40,10 @@ public class EnemyDistanceSkills
         if(CanSeePlayer())
         {
             Debug.Log("Can shoot");
-           return Mathf.Abs((_transform.position - _player.Position).sqrMagnitude) <= _settings.ShootingDistance;
+            if((_transform.position - _player.Position).magnitude <= _settings.ShootingDistance)
+            {
+                return true;
+            }
         }
 
         return false;
