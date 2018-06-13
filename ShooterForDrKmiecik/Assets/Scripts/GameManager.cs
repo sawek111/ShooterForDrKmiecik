@@ -54,7 +54,7 @@ public class GameManager : IInitializable, ITickable
         }
         else if(AreEnemiesDead())
         {
-            return GameState.LOSE;    
+            return GameState.WON;    
         }
 
         return GameState.PLAYING;
