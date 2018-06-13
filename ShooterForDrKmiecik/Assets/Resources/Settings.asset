@@ -34,14 +34,14 @@ MonoBehaviour:
   _enemyAnimator:
     AnimatorStateString: State
   _enemyMover:
-    DistanceToPathElementtAvailableOffset: 0.3
-    DistanceToTargetAvailableOffset: 1
-    TargetChangeAvailableOffset: 1
-    RunSpeed: 15
-    EscapeMaxDistance: 20
+    DistanceToPathElementtAvailableOffset: 1
+    DistanceToTargetAvailableOffset: 5
+    TargetChangeAvailableOffset: 0
+    RunSpeed: 10
+    EscapeMaxDistance: 70
   _enemyDistanceSkills:
-    VisiblePlayerDistance: 25
-    ShootingDistance: 10
+    VisiblePlayerDistance: 20
+    ShootingDistance: 15
   _shooter:
     EnemyShootTimeNormalized: 0.234
     PlayerShootTimeNormalized: 0.187
