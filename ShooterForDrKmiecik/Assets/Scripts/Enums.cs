@@ -18,6 +18,12 @@ public enum TargetType
     NONE
 }
 
+public enum PatrolState
+{
+    PATROL,
+    IDLE
+}
+
 public enum Axis
 {
     HORIZONTAL,

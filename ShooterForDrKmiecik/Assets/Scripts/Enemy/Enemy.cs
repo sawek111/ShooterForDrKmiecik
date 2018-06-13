@@ -35,6 +35,13 @@ public class Enemy : MonoBehaviour, IHealable, IHurtable
         get { return _enemyMover.TargetType; }
     }
 
+
+    public PatrolState PatrolState
+    {
+        get { return _behevior.PatrolState; }
+        set { _behevior.PatrolState = value; }
+    }
+
     public void MoveToTarget()
     {
         _enemyMover.MoveToTarget();

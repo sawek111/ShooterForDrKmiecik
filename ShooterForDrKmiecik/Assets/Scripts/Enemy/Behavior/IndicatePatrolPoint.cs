@@ -20,6 +20,11 @@ public class IndicatePatrolPoint : Node
 
     public override NodeState ParticularTick(Tick tick)
     {
+        if(_enemy.PatrolState == PatrolState.IDLE)
+        {
+            return NodeState.FAILURE;
+        }
+
         if(_enemy.TargetType != TargetType.PATROL)
         {
             Vector3 randomPos = _pathFinder.GetRandomPosition();

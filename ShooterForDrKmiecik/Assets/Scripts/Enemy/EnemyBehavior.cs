@@ -8,6 +8,8 @@ public class EnemyBehavior : IInitializable, IFixedTickable
     private BehaviorTree _behaviorTree = null;
     private BlackBoard _board = new BlackBoard();
 
+    public PatrolState PatrolState { get; set; }
+
     public EnemyBehavior(Enemy enemy, DiContainer container)
     {
         _container = container;
@@ -16,6 +18,8 @@ public class EnemyBehavior : IInitializable, IFixedTickable
 
     public void Initialize()
     {
+        PatrolState = PatrolState.PATROL;
+
         _behaviorTree = CreateTree();
     }
 
@@ -65,10 +69,11 @@ public class EnemyBehavior : IInitializable, IFixedTickable
                         )
                     )
             ),
-                new MemSequnceNode(
+                new PriorityNode(
                     new SequenceNode(
                         new IndicatePatrolPoint(_container),
-                        new MoveToTarget()
+                        new MoveToTarget(),
+                        new ChangeToIdle()
                     ),
                     new Idle()
                 )

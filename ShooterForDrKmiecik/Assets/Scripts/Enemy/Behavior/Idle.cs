@@ -18,6 +18,7 @@ public class Idle : Node
         if (_timer > 5f)
         {
             _timer = 0f;
+            _enemy.PatrolState = PatrolState.PATROL;
             return NodeState.SUCCESS;
         }
 
